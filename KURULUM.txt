@@ -1,0 +1,50 @@
+ELITE PARKE — CANLIYA ALMA NOTLARI (MySQL)
+==========================================
+
+GEREKSİNİM
+- PHP 8.0+ (test: 8.3), MySQL 5.7+/8.x, Apache (.htaccess destekli)
+
+YÜKLEME
+1. Bu klasörün İÇİNDEKİLERİNİ hosting'in yayın köküne (public_html) yükleyin.
+   (Alt klasörde de çalışır; yollar görecelidir.)
+
+2. VERİTABANI oluşturun ve şemayı içe aktarın:
+   - Hosting panelinden (cPanel > MySQL) bir veritabanı + kullanıcı oluşturun.
+   - phpMyAdmin > İçe Aktar ile elite_parke.sql dosyasını yükleyin
+     (ya da: mysql -u KULLANICI -p VERITABANI < elite_parke.sql)
+
+3. baglan.php dosyasını hosting bilgilerinizle düzenleyin:
+     DB_HOST      -> genelde 'localhost'
+     DB_AD        -> oluşturduğunuz veritabanı adı
+     DB_KULLANICI -> veritabanı kullanıcısı
+     DB_SIFRE     -> veritabanı şifresi
+
+4. assets/img/ klasörünün YAZILABİLİR olduğundan emin olun (izin 755/775)
+   — panelden yüklenen ürün görselleri buraya kaydedilir.
+
+GİRİŞ (YÖNETİM)
+- Panel:     https://alanadiniz.com/yonetim/
+- Kullanıcı: admin
+- Şifre:     elite2026
+- >>> İlk girişten sonra Ayarlar > Şifre değiştir ile mutlaka değiştirin. <<<
+
+VERİ / TABLOLAR (elite_parke.sql)
+- ayarlar      : firma bilgileri (site adı, telefon, e-posta, adres...)
+- urunler      : ürün/parke kayıtları (panelden eklenir/düzenlenir)
+- referanslar  : müşteri yorumları
+- mesajlar     : iletişim formundan gelen talepler
+- yoneticiler  : admin kullanıcı(lar)ı (şifre hash'li)
+
+E-POSTA
+- Form talepleri "mesajlar" tablosuna kaydedilir ve panelde "Mesajlar"da görünür.
+- Sunucuda mail() aktifse ayrıca e-posta bildirimi de gider (gonder.php).
+
+GÜVENLİK
+- Kök .htaccess; .sql/.json/.txt dosyalarına ve baglan.php'ye dışarıdan erişimi
+  engeller, dizin listelemeyi kapatır (hosting Apache + .htaccess destekli olmalı).
+- İçe aktarımdan sonra elite_parke.sql dosyasını sunucudan SİLMENİZ önerilir
+  (içinde şema + admin şifre hash'i bulunur; .htaccess zaten erişimi kapatır ama
+   silmek en temizidir).
+- baglan.php doğrudan açıldığında "Direkt erişim yok" der; DB şifresi sızmaz.
+
+Tasarım & geliştirme: DN Kreatif

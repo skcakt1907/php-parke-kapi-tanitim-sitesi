@@ -1,0 +1,18 @@
+# --- Ortama ozel / uretilen dosyalar ---
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Kullanicinin yukledigi dosyalar (varsa) — kod degil, icerik
+uploads/
+assets/uploads/
+
+# Editor
+.vscode/
+.idea/
+
+# NOT: baglan.php BILEREK takip ediliyor.
+# Icinde yalnizca YEREL veritabani bilgisi var (root, sifresiz).
+# Canliya cikarken bu dosya elle duzenleniyor (bkz. KURULUM.txt).
+# Canli sifre buraya YAZILIRSA once .gitignore'a alinmali.
